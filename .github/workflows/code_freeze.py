@@ -1,14 +1,15 @@
 
 
 import requests
-import sys
+import os
 
 ENVIRONMENT = "stage"
 
 project_key = "smart-assistant"
 feature_flag_key = "code-freeze"
 url = "https://app.launchdarkly.com/api/v2/flags/" + project_key + "/" + feature_flag_key
-headers = {"Authorization": str(sys.argv[1:])}
+LD_API_KEY = os.getenv('LD_API_KEY')
+headers = {"Authorization": LD_API_KEY}
 
 response = requests.get(url, headers=headers)
 
