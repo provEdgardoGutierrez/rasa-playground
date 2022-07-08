@@ -27,4 +27,4 @@ jobs:
           #   my_other_branch
       - name: execute py script # run file
         run: |
-          python code_freeze.py ${{ secrets.LD_API_KEY }}
+          python ./.github/workflows/code_freeze.py ${{ secrets.LD_API_KEY }}
