@@ -11,17 +11,29 @@ concurrency:
 
 env:
   LD_API_KEY: ${{ secrets.LD_API_KEY }}
-  BRANCH: ${{ steps.extract_branch.outputs.branch }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
+      # - name: Extract branch name
+      #   shell: bash
+      #   run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      #   id: extract_branch
+      - name: Set Tier
+        id: step1
+        run: |
+          if [[ "${{ github.ref_name }}" ]]; then
+            BRANCH='${{ github.ref_name }}'
+          else
+            echo "Could not set tier"
+            exit
+          fi
+
+          echo $BRANCH
+          echo "::set-output name=BRANCH::$BRANCH"
+          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
       - name: setup python
