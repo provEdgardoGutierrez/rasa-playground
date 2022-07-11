@@ -30,7 +30,7 @@ In the `phsdig.slack.com` workspace, the LaunchDarkly (LD) App had already been 
 
 ---
 
-## What a code freeze looks like
+## What a code freeze looks like 👀
 
 <details>
 <summary><b>Show Details</b></summary>
@@ -51,15 +51,16 @@ When there is a code freeze in a particular tier, this fail the `Check Code Free
 - GitHub Actions
 - LaunchDarkly
 
-### Setup
-...
+### Setup in new Github Repositories
+- Add the LaunchDarkly API key as `LD_API_KEY` (found in the SmartAssistant 1Password vault) in **Settings > Secrets > Actions**
+- Add the `CodeFreeze.yml` workflow file and the `code_freeze.py` Python script to the `.github/workflows` directory.
 
 </details>
 </br>
 
 ---
 
-## FAQ
+## FAQ 🙋
 <details>
 <summary><b>Show Details</b></summary>
 
