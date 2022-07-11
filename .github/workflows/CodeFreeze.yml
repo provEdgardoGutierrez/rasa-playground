@@ -18,11 +18,14 @@ jobs:
 
     steps:
       - name: Extract branch name
-        run: echo "::set-env name=BRANCH::$(echo ${GITHUB_HEAD_REF})"
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       - name: Set Tier
         id: step1
         run: |
           BRANCH='${{ steps.extract_branch.outputs.branch }}'
+          echo "$BRANCH"
           echo "BRANCH=$BRANCH" >> $GITHUB_ENV
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
