@@ -24,15 +24,7 @@ jobs:
       - name: Set Tier
         id: step1
         run: |
-          if [[ "${{ github.ref_name }}" ]]; then
-            BRANCH='${{ github.ref_name }}'
-          else
-            echo "Could not set tier"
-            exit
-          fi
-
-          echo $BRANCH
-          echo "::set-output name=BRANCH::$BRANCH"
+          BRANCH='${{ steps.extract_branch.outputs.branch }}'
           echo "BRANCH=$BRANCH" >> $GITHUB_ENV
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
