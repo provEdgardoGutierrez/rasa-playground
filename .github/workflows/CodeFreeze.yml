@@ -1,8 +1,9 @@
 name: Check Code Freeze
 on:
-  push:
+  pull_request:
     branches:
-    - 'main'
+    - 'dev'
+    - 'stage'
 
 concurrency:
   group: cd-${{ github.ref }}
@@ -10,12 +11,17 @@ concurrency:
 
 env:
   LD_API_KEY: ${{ secrets.LD_API_KEY }}
+  BRANCH: ${{ steps.extract_branch.outputs.branch }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
       - name: setup python
@@ -28,6 +34,6 @@ jobs:
           pip install requests
           # ref: # branch
           #   my_other_branch
-      - name: execute py script # run file
+      - name: execute py script
         run: |
           python ./.github/workflows/code_freeze.py
