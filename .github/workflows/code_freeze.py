@@ -14,7 +14,7 @@ if not ENVIRONMENT:
 ACCEPTED_ENVIRONMENTS = ["dev", "stage"]
 if not ENVIRONMENT in ACCEPTED_ENVIRONMENTS:
     raise Exception(
-        f"The 'ENVIRONMENT' environment variable is not one of the allowed values. Accepted: {ACCEPTED_ENVIRONMENTS}"
+        f"The 'ENVIRONMENT' environment variable is not one of the allowed values. Accepted: {ACCEPTED_ENVIRONMENTS}. Was: '{ENVIRONMENT}'"
     )
 
 URL = "https://app.launchdarkly.com/api/v2/flags/smart-assistant/code-freeze"
