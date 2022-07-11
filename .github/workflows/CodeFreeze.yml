@@ -25,8 +25,8 @@ jobs:
         id: step1
         run: |
           BRANCH='${{ steps.extract_branch.outputs.branch }}'
-          echo "$BRANCH"
-          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
+          echo "$GITHUB_BASE_REF"
+          echo "BRANCH=$GITHUB_BASE_REF" >> $GITHUB_ENV
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
       - name: setup python
