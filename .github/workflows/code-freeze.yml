@@ -1,9 +1,6 @@
 name: Code Freeze Check
 on:
-  pull_request:
-    branches:
-    - 'dev'
-    - 'stage'
+  workflow_call:
 
 concurrency:
   group: cd-${{ github.ref }}
