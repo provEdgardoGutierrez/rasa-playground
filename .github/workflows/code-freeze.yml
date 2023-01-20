@@ -9,6 +9,9 @@ concurrency:
 env:
   LD_API_KEY: ${{ secrets.LD_API_KEY }}
 
+permissions:
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
