@@ -1,4 +1,4 @@
-name: Check Code Freeze
+name: Code Freeze Check
 on:
   pull_request:
     branches:
